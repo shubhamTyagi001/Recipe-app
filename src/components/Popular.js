@@ -20,19 +20,20 @@ function Popular() {
         <h3>popular pics</h3>
         <Splide
           options={{
-            perPage: 3,
+            perPage: 4,
             arrows: false,
             pagination: false,
             drag: "free",
-            gap: "2rem",
+            gap: "5rem",
           }}
         >
           {popular.map((recipe) => {
             return (
-              <SplideSlide>
+              <SplideSlide key={recipe.id}>
                 <Card>
                   <p>{recipe.title}</p>
                   <img src={recipe.image} alt={recipe.title} />
+                  <Gradient />
                 </Card>
               </SplideSlide>
             );
@@ -51,10 +52,38 @@ const Card = styled.div`
   min-height: 25rem;
   border-radius: 2rem;
   overflow: hidden;
-  width: 26rem;
+  position: relative;
+
+  p {
+    position: absolute;
+    z-index: 10;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    color: white;
+    width: 100%;
+    bottom: 0%;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-item: center;
+  }
   img {
     border-radius: 2rem;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
-
+const Gradient = styled.div`
+  z-index: 3;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+`;
 export default Popular;
