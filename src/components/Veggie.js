@@ -26,11 +26,10 @@ function Veggie() {
   return (
     <div>
       <Wrapper>
-        <h3>veggie Picks</h3>
+        <h3>veggie</h3>
         <Splide
           options={{
             perPage: 3,
-            arrows: false,
             pagination: false,
             drag: "free",
             gap: "5rem",

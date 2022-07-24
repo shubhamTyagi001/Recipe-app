@@ -26,11 +26,10 @@ function Popular() {
   return (
     <div>
       <Wrapper>
-        <h3>popular pics</h3>
+        <h3>popular</h3>
         <Splide
           options={{
             perPage: 4,
-            arrows: false,
             pagination: false,
             drag: "free",
             gap: "5rem",

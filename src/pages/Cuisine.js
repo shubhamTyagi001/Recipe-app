@@ -15,10 +15,14 @@ function Cuisine() {
   };
   useEffect(() => {
     getCuisine(params.type);
-    //console.log(params.type);
   }, [params.type]);
   return (
-    <Grid>
+    <Grid
+      animate={{ opacity: 1 }}
+      inital={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       {cuisine.map((item) => {
         console.log(item);
         return (
@@ -39,7 +43,7 @@ const Grid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 3rem;
 `;
-const Card = styled.div`
+const Card = styled(motion.div)`
   img {
     width: 100%;
     border-radius: 2rem;
