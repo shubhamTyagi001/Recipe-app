@@ -5,6 +5,7 @@ import styled from "styled-components";
 function Recipe() {
   let params = useParams();
   const [details, setDetails] = useState({});
+  const [activeTab, setActiveTab] = useState("instructions");
 
   const fetchDetails = async () => {
     const data = await fetch(
@@ -25,8 +26,37 @@ function Recipe() {
         <img src={details.image} alt="" />
       </div>
       <Info>
-        <Button>Instructions</Button>
-        <Button>Ingredients</Button>
+        <Button
+          className={activeTab === "instructions" ? "active" : ""}
+          onClick={() => {
+            setActiveTab("instructions");
+          }}
+        >
+          Instructions
+        </Button>
+        <Button
+          className={activeTab === "ingredients" ? "active" : ""}
+          onClick={() => {
+            setActiveTab("ingredients");
+          }}
+        >
+          Ingredients
+        </Button>
+        {activeTab === "instructions" && (
+          <div>
+            {/* randerout html data of api */}
+            <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
+            <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
+          </div>
+        )}
+
+        {activeTab === "ingredients" && (
+          <ul>
+            {details.extendedIngredients.map((ingredient) => (
+              <li key={ingredient.id}>{ingredient.original}</li>
+            ))}
+          </ul>
+        )}
       </Info>
     </DetailWapper>
   );
